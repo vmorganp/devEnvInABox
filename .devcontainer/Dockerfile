@@ -31,10 +31,12 @@ RUN unzip /tmp/awscliv2.zip -d /tmp/ \
 
 
 
-user vscode
+USER vscode
 RUN git clone https://github.com/tfutils/tfenv.git /home/vscode/.tfenv \ 
   && sudo ln -s /home/vscode/.tfenv/bin/* /usr/local/bin
 
 RUN wget https://raw.githubusercontent.com/rupa/z/master/z.sh -O /home/vscode/z.sh
-
 COPY .zshrc /home/vscode/
+
+USER root
+RUN apt-get update && apt-get upgrade -y
